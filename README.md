@@ -25,12 +25,10 @@ This forge expands as my knowledge grows. Here is the architecture of what I am 
 
 | Module | Topic / Lesson | Status | Key Takeaway / Feature Built |
 | :--- | :--- | :---: | :--- |
-| **JavaScript** | Lesson 10: Scopes & Closures | 🧠 In Progress | Lexical scope and memory retention |
-
-| **JavaScript** | Lesson 11: Advance Function Patterns | ⏳ Up Next | Prototypes and Inheritance |
-
+| **JavaScript** | Lesson 10: Scopes & Closures | 🧠 Completed | Lexical scope and memory retention |
+| **JavaScript** | Lesson 11: Advance Function Patterns | In Progress | Advance Functions |
+| **JavaScript** | Lesson 12: Prototypes and Inheritance | ⏳ Up Next | Prototypes & Inheritance |
 | **React.js** | Components & Props | 💤 Future | Building reusable UI elements |
-
 | **Node.js** | Building a REST API | 💤 Future | Handling HTTP requests and routing |
 
 ---
