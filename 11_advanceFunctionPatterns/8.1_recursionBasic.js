@@ -29,11 +29,13 @@ function countDown(number){
 
 const sumTo = (number) => {
     let total = 0
-    if(number >= 1){
-        total = total + number
-        console.log(total)
-        sumTo(number - 1)
-    }    
+    if(number < 1){
+        return 0
+    }
+    total += sumTo(number - 1)
+
+    return total
+    
 }
 
 console.log(sumTo(5))
