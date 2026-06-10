@@ -25,14 +25,16 @@ function countDown(number){
 
 // sumTo(5) -> should produce: 15
 
-// because: 1 + 2 + 3 + 4 + 5
+// because: 1 + 2 + 3 + 4 + 6
 
 const sumTo = (number) => {
-    let total = 0
+    let total = number
     if(number < 1){
         return 0
     }
-    total += sumTo(number - 1)
+    let sum = sumTo(number - 1)
+
+    total += sum
 
     return total
     

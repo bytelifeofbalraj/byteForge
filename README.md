@@ -26,7 +26,7 @@ This forge expands as my knowledge grows. Here is the architecture of what I am 
 | Module | Topic / Lesson | Status | Key Takeaway / Feature Built |
 | :--- | :--- | :---: | :--- |
 | **JavaScript** | Lesson 10: Scopes & Closures | 🧠 Completed | Lexical scope and memory retention |
-| **JavaScript** | Lesson 11: Advance Function Patterns | In Progress | Reached the stage of identifying base cases and recursive calls; currently working through recursive return values and call-stack flow. |
+| **JavaScript** | Lesson 11: Advance Function Patterns | In Progress | Log: 01 - Reached the stage of identifying base cases and recursive calls; currently working through recursive return values and call-stack flow., Log: 02 - Implemented a recursive sumTo(N) solution, strengthening understanding of recursive calls, base cases, and how return values travel back up the call stack. |
 | **JavaScript** | Lesson 12: Prototypes and Inheritance | ⏳ Up Next | Prototypes & Inheritance |
 | **React.js** | Components & Props | 💤 Future | Building reusable UI elements |
 | **Node.js** | Building a REST API | 💤 Future | Handling HTTP requests and routing |
