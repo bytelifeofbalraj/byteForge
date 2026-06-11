@@ -1,43 +1,11 @@
-// countdown using recursion
+//Create a recursive function `countdown` that takes a number `n` and logs numbers from n down to 1. If n is 0 or less, do nothing (base case). Call countdown(3).
 
-// 5 -> 4 -> 3 -> 2 -> 1
-
-// a function which takes a max number and will go down to the minimum positive number, which in this case is 1.
-
-// so 1 is base case in this example,
-// Recursive case is how to solve problem in little part, 
-// now is 5, my problem is to find a way to make it 4
-
-function countDown(number){
-    if (number >= 1){
-        console.log(number)
-        countDown(number-1)
+function countdown(n){
+    if (n > 0){
+        console.log(n)
+        countdown(n-1)
     }
 }
 
-// countDown(5)
+countdown(3)
 
-// ⏭️ next problem ⤵️
-
-// Sum all numbers from 1 to N
-
-// Example:
-
-// sumTo(5) -> should produce: 15
-
-// because: 1 + 2 + 3 + 4 + 6
-
-const sumTo = (number) => {
-    let total = number
-    if(number < 1){
-        return 0
-    }
-    let sum = sumTo(number - 1)
-
-    total += sum
-
-    return total
-    
-}
-
-console.log(sumTo(5))
