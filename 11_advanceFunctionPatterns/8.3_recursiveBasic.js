@@ -6,6 +6,7 @@
 
 // because: 1 + 2 + 3 + 4 + 6
 
+
 const sumTo = (number) => {
     let total = number
     if(number < 1){

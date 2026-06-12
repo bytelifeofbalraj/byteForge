@@ -12,7 +12,7 @@ const sumArray = (arr) => {
     return arr.shift() + sumArray(arr)
 }
 
-// console.log(sumArray(arr))
+console.log(sumArray(arr))
 
 
 let arr2 = [1, 2, 3, 4] 
