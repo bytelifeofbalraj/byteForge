@@ -4,25 +4,20 @@
 let numArr = [3, 8, 2, 10, 1] // 10
 
 function recursiveMaximum(arr){
+    let maxNum = arr[0]
     let currNum = 0
-    let savedNum = arr[0]
-
+    
     //base code
-    if(arr.length > 0){
+    if(arr.length > 0){      
+        arr.shift() 
+        currNum = recursiveMaximum(arr)  
 
-        
-
-        if(savedNum > currNum){
-            currNum = savedNum
-            recursiveMaximum(arr)
-            savedNum = arr.shift()
+        if(currNum > maxNum){
+            maxNum = currNum
         }
     }
 
-    // console.log(currNum)
-    return currNum
+    return maxNum
 }
 
-console.log(recursiveMaximum(numArr))
-
-console.log()
+recursiveMaximum(numArr)
