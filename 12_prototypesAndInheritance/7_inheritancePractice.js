@@ -29,3 +29,5 @@ Admin.prototype.constructor = Admin
 
 Admin.prototype.deleteUser = function deleteUser(){}
 
+console.log(Admin.prototype.constructor)
+
