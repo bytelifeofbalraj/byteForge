@@ -41,16 +41,41 @@ function validateEmail(email){
         throw new ValidationError('There should not a space before or after a dot', "email")
     }
 
-   
 }
 
-// validateEmail('abc@a.b.c.d..e.com')
+function validatePassword(password){
+    let cleanedPassword = password.trim()
 
-let arr = ['a',' b', 'c', 'd', 'e', 'com']
 
-console.log(arr[arr.length -1])
+    if(cleanedPassword.length === 0){
+        throw new ValidationError('Password is required', 'password')
+    }
 
-let arr2 = ['a',' b', 'c', 'd', 'e']
+    if(cleanedPassword.length < 8){
+        throw new ValidationError('Password must be at least 8 characters long.', 'password')
+    }
 
-console.log(arr2[arr2.length -1])
+    for(let currentChar of cleanedPassword){
+        if(currentChar.toUpperCase() !== currentChar.toLowerCase()){
+            if(currentChar === currentChar.toUpperCase()){
+                break
+            }
+            continue
+        }
+        throw new ValidationError('atleast one uppercase is required', 'password')
+    }
+    
+}
 
+
+for(let currentChar of 'djgdaAfg32@'){
+        if(currentChar.toUpperCase() !== currentChar.toLowerCase()){
+            if(currentChar === currentChar.toUpperCase()){
+                console.log('Upper Case is: ', currentChar)
+                break
+            }
+            console.log(`outside of inner if: ${currentChar}`)
+            continue
+        }
+        console.log(`outside of outer if`)
+    }
