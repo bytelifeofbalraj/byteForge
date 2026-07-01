@@ -55,27 +55,50 @@ function validatePassword(password){
         throw new ValidationError('Password must be at least 8 characters long.', 'password')
     }
 
+    //atleast one uppercase is required
+    let upperCaseFound = false 
     for(let currentChar of cleanedPassword){
         if(currentChar.toUpperCase() !== currentChar.toLowerCase()){
             if(currentChar === currentChar.toUpperCase()){
+                upperCaseFound = true
                 break
             }
-            continue
         }
-        throw new ValidationError('atleast one uppercase is required', 'password')
-    }
+    }   
     
+    if(!upperCaseFound){
+        throw new ValidationError('At least one uppercase letter is required', 'password')
+    } 
+
+     //atleast one lowercase is required
+    let lowerCaseFound = false 
+    for(let currentChar of cleanedPassword){
+        if(currentChar.toUpperCase() !== currentChar.toLowerCase()){
+            if(currentChar === currentChar.toLowerCase()){
+                lowerCaseFound = true
+                break
+            }   
+        }
+    }   
+    
+    if(!lowerCaseFound){
+        throw new ValidationError('At least one lowercase letter is required.', 'password')
+    } 
+
+    //one digit required
+    let numArr = ['0','1','2','3','4','5','6','7','8','9']
+    let digitFound = false
+    for(let currentChar of cleanedPassword){
+        if(numArr.includes(currentChar)){
+            digitFound = true
+            break
+        }
+    }
+
+    if(!digitFound){
+        throw new ValidationError('At least one digit is required', 'password')
+    }
 }
 
 
-for(let currentChar of 'djgdaAfg32@'){
-        if(currentChar.toUpperCase() !== currentChar.toLowerCase()){
-            if(currentChar === currentChar.toUpperCase()){
-                console.log('Upper Case is: ', currentChar)
-                break
-            }
-            console.log(`outside of inner if: ${currentChar}`)
-            continue
-        }
-        console.log(`outside of outer if`)
-    }
+
