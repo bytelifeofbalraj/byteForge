@@ -98,6 +98,21 @@ function validatePassword(password){
     if(!digitFound){
         throw new ValidationError('At least one digit is required', 'password')
     }
+
+    //one symbol required
+    let symbolArr = ['!', '@', '#', '$', '%', '&', '*', '-']
+    let symbolFound = false
+
+    for(let currentChar of cleanedPassword){
+        if(symbolArr.includes(currentChar)){
+            symbolFound = true
+            break
+        }
+    }
+
+    if(!symbolFound){
+        throw new ValidationError('At least one symbol is required', 'password')
+    }
 }
 
 
