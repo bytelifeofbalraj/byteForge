@@ -1,14 +1,26 @@
 class newSignal {
   constructor() {
-    this.listeners = [];
+    this.listenrs = [];
   }
 
-  addEventListener(event, listnerCallback) {
-    this.listeners.push({ event: event, callback: listnerCallback });
+  addEventListenr(event, callback) {
+    this.listenrs.push({ event: event, callback: callback });
+  }
+
+  removeEventListner(event, callback) {
+    for (const listner of this.listenrs) {
+      if (
+        listner.event === "abort" &&
+        callback.name === listner.callback.name
+      ) {
+        const index = this.listenrs.indexOf(listner);
+        this.listenrs.splice(index, 1);
+      }
+    }
   }
 
   dispatch(event) {
-    for (const listener of this.listeners) {
+    for (const listener of this.listenrs) {
       if (listener.event === event) {
         listener.callback();
       }
@@ -18,19 +30,23 @@ class newSignal {
 
 const signal = new newSignal();
 
-signal.addEventListener("abort", () => {
-  console.log("Listener A");
+signal.addEventListenr("abort", function callbackA() {
+  console.log("Listenr A");
 });
 
-signal.addEventListener("abort", () => {
-  console.log("Listener B");
+signal.addEventListenr("abort", function callbackB() {
+  console.log("Listenr B");
 });
 
-signal.addEventListener("abort", () => {
-  console.log("Listener C");
+signal.addEventListenr("abort", function callbackC() {
+  console.log("Listenr C");
 });
 
-signal.dispatch("abort");
+// signal.dispatch("abort");
+
+console.log(signal);
+signal.removeEventListner("abort", callbackB);
+console.log(signal);
 
 /* output:
 
