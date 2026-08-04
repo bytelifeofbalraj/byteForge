@@ -8,13 +8,13 @@ class newSignal {
   }
 
   removeEventListner(event, callback) {
-    for (const listner of this.listenrs) {
+    for (let index = 0; index <= this.listenrs.length - 1; index++) {
       if (
-        listner.event === "abort" &&
-        callback.name === listner.callback.name
+        this.listenrs[index].event === event &&
+        this.listenrs[index].callback === callback
       ) {
-        const index = this.listenrs.indexOf(listner);
         this.listenrs.splice(index, 1);
+        break;
       }
     }
   }
@@ -43,10 +43,6 @@ signal.addEventListenr("abort", function callbackC() {
 });
 
 // signal.dispatch("abort");
-
-console.log(signal);
-signal.removeEventListner("abort", callbackB);
-console.log(signal);
 
 /* output:
 
