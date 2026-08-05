@@ -5,11 +5,17 @@ function step1(callback) {
 }
 
 function step2(callback) {
-  callback("Step 2");
+  callback(" -> Step 2");
 }
 
 function step3(callback) {
-  callback("Step 3");
+  callback(" -> Step 3");
 }
 
-step1(step2(step3));
+step1((data1) => {
+  step2((data2) => {
+    step3((data3) => {
+      console.log(data3);
+    });
+  });
+});
