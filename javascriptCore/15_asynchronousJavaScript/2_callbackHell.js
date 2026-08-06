@@ -12,10 +12,18 @@ function step3(callback) {
   callback(" -> Step 3");
 }
 
-step1((data1) => {
-  step2((data2) => {
+step1((value1) => {
+  let data1 = value1;
+  step2((value2) => {
+    let data2 = value2;
     step3((data3) => {
-      console.log(data3);
+      console.log(`${data1} ${data2} ${data3}`);
     });
   });
 });
+
+/*
+output ⤵️
+Step 1  -> Step 2  -> Step 3
+
+*/
