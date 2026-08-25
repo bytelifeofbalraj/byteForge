@@ -26,6 +26,8 @@ function promiseAll(promises) {
           if (completed === total) {
             resolve(resultArray);
           }
+
+          throw new Error("Promise rejected");
         })
         .catch((error) => {
           reject(error);
