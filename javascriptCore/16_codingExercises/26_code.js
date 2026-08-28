@@ -18,29 +18,26 @@ This is where try/catch becomes part of your retry mechanism.
 
 */
 
-function testfn() {
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    if (attempt < 3) {
-      return 5 === 4;
-    }
-    return 5 === 5;
+function testFn(attempt) {
+  if (attempt >= 5) {
+    return "You got it!";
   }
+  throw new Error("🪳");
 }
 
 function retry(fn, maxRetries) {
-  try {
-    let result;
-    for (let attempt = 0; attempt <= maxRetries; attempt++) {
-      console.log(attempt);
-      result = fn();
+  let result;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    console.log(attempt);
+    try {
+      result = fn(attempt);
       if (result) {
         return result;
       }
+    } catch (error) {
+      console.log(error.message);
     }
-    throw new Error("All retries failed, try again!");
-  } catch (error) {
-    console.log(`The error occurt, ${error}`);
   }
+  throw new Error("All retries failed, try again!");
 }
-
-console.log(retry(testfn, 3));
+console.log(retry(testFn, 3));
