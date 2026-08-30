@@ -31,7 +31,7 @@ Build it yourself first. 🧠
 */
 
 function testFn(attempt) {
-  if (attempt >= 3) {
+  if (attempt >= 5) {
     return "You got it!";
   }
   throw new Error("🪳");
@@ -39,16 +39,15 @@ function testFn(attempt) {
 
 async function retry(fn, maxRetries) {
   let result;
+  let delay = 500;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     console.log(attempt); //counting attempts by printing
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     try {
       if (attempt === 0) {
         result = fn(attempt);
-        if (result) {
-          return result;
-        }
-        throw new Error(`Attempt ${attempt} failed.`);
+        return result;
       } else {
         result = await new Promise((resolve, reject) => {
           try {
@@ -59,17 +58,27 @@ async function retry(fn, maxRetries) {
               reject(value);
             }
           } catch (error) {
-            reject(error.message);
+            reject(new Error("🪳"));
           }
         });
+        return result;
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(`Oops: ${error.message}`);
+    }
+    if (attempt < maxRetries) {
+      delay = delay * 2;
+      if (delay <= 5000) {
+        console.log(`wait for ${delay / 1000} seconds!⌛`);
+        await sleep(delay);
+      } else {
+        console.log(`wait for 5 seconds!⌛`);
+        await sleep(5000);
+      }
     }
   }
-
   throw new Error("All retries failed, try again!");
 }
 
-let result = await retry(testFn, 3);
+let result = await retry(testFn, 5);
 console.log(result);
