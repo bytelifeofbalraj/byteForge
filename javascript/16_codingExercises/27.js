@@ -31,7 +31,7 @@ Build it yourself first. 🧠
 */
 
 function testFn(attempt) {
-  if (attempt >= 5) {
+  if (attempt >= 3) {
     return "You got it!";
   }
   throw new Error("🪳");
@@ -66,8 +66,9 @@ async function retry(fn, maxRetries) {
     } catch (error) {
       console.log(`Oops: ${error.message}`);
     }
-    if (attempt < maxRetries) {
-      delay = delay * 2;
+    if (attempt <= maxRetries) {
+      const randomness = Math.floor(Math.random() * 100);
+      delay = delay * 2 + randomness;
       if (delay <= 5000) {
         console.log(`wait for ${delay / 1000} seconds!⌛`);
         await sleep(delay);
@@ -79,6 +80,3 @@ async function retry(fn, maxRetries) {
   }
   throw new Error("All retries failed, try again!");
 }
-
-let result = await retry(testFn, 5);
-console.log(result);
