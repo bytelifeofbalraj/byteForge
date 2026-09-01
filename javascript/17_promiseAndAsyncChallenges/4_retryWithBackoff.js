@@ -2,15 +2,15 @@
 
 async function testFn(attempt) {
   if (attempt >= 3) {
-    let value = await Promise.resolve("You got it!");
-    return value;
+    return Promise.resolve("You got it!");
   }
-  Promise.reject(new Error("🪳"));
+  return Promise.reject(new Error("🪳"));
 }
 
 async function retry(fn, maxAttempts, delay) {
   let result;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     try {
       if (attempt === 1) {
         console.log(`Attempt: ${attempt}`);
@@ -18,27 +18,20 @@ async function retry(fn, maxAttempts, delay) {
         return result;
       } else {
         console.log(`Attempt: ${attempt}`);
-        result = await new Promise(async (resolve, reject) => {
-          try {
-            let value = 0;
-            value = await fn(attempt);
-            if (value) {
-              resolve(value);
-            } else {
-              reject(new Error("silent error"));
-            }
-          } catch (error) {
-            reject(new Error("loud error"));
-          }
-        });
+
+        result = await fn(attempt);
         return result;
       }
     } catch (error) {
-      console.log(`An error: ${error.Message}.`);
+      console.log(`An error: ${error.message}.`);
     }
-    setTimeout(() => {}, delay);
+    if (attempt === 1) {
+      sleep(delay);
+    } else {
+      let delay = delay * 2;
+      sleep(delay);
+    }
   }
-  console.log("I am here");
 }
 
 const result = await retry(testFn, 3, 1000);
