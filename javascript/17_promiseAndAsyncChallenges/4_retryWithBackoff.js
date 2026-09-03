@@ -25,11 +25,10 @@ async function retry(fn, maxAttempts, delay) {
     } catch (error) {
       console.log(`An error: ${error.message}.`);
     }
-    if (attempt === 1) {
-      sleep(delay);
-    } else {
-      let delay = delay * 2;
-      sleep(delay);
+
+    if (attempt < maxAttempts) {
+      await sleep(delay);
+      delay = delay * 2;
     }
   }
 }
